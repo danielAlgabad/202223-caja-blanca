@@ -49,6 +49,7 @@ public class TestCajaBlanca {
                 "La linea de fin no puede ser mayor que el tamaño del editor");
         Assertions.assertEquals(0, editorTestVacio.numApariciones(1, 0, "tuetano"));
         Assertions.assertEquals(0, editorLLeno.numApariciones(2, 1, "tuetano"));
+        // El siguiente test es imposible
         Assertions.assertEquals(0, editorLLeno.numApariciones(3, 3, "tuetano"));
         Assertions.assertEquals(0, editorLLeno.numApariciones(2, 2, "b"));
         Assertions.assertEquals(1, editorLLeno.numApariciones(2, 2, "y"));
@@ -58,8 +59,41 @@ public class TestCajaBlanca {
     public void numPalabras(){
         Assertions.assertThrows(EmptyCollectionException.class, () -> {editorTestVacio.numPalabras();},
                 "el editor vacio no debería tener palabras");
+/*
+        try {
+            Assertions.assertEquals(0, editorLLeno.numPalabras(),
+                    "el editor con un string vacio tiene 0 palabras");
+        } catch (EmptyCollectionException e) {
+            e.printStackTrace();
+        }
+*/
+        try {
+            Assertions.assertEquals(1, editorLLeno.numPalabras(),
+                    "el editor con un string vacio tiene 0 palabras");
+        } catch (EmptyCollectionException e) {
+            e.printStackTrace();
+        }
     }
 
+    @Test
+    public void palabraMasLargaTest(){
+        try {
+            Assertions.assertNull(editorTestVacio.palabraMasLarga(),
+                    "el editor vacio no tiene palabras loco");
+//            Assertions.assertEquals("tuetano", editorLLeno.palabraMasLarga(), "la pàlabra más larga es tuetano");
+//            Assertions.assertEquals("hola", editorLLeno.palabraMasLarga(), "la pàlabra más larga es hola");
+            Assertions.assertEquals("hola", editorLLeno.palabraMasLarga(), "la pàlabra más larga es hola");
+        } catch (EmptyCollectionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void existePalabra(){
+        Assertions.assertFalse(editorTestVacio.existePalabra("tuetano"), "editor vacio no tiene palabras");
+        Assertions.assertFalse(editorLLeno.existePalabra("garfield"), "editor tiene tuetano dentro");
+        Assertions.assertTrue(editorLLeno.existePalabra("tuetano"), "editor tiene tuetano dentro");
+    }
 
 
 }
