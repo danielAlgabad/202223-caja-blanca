@@ -95,5 +95,23 @@ public class TestCajaBlanca {
         Assertions.assertTrue(editorLLeno.existePalabra("tuetano"), "editor tiene tuetano dentro");
     }
 
+    @Test
+    public void sustituirPalabraTest(){
+        editorTestVacio.sustituirPalabra("jamon", "monja");
+        Assertions.assertEquals(0, editorTestVacio.size(), "el editor vacio debería seguir vacio");
 
+        editorLLeno.sustituirPalabra("jamon", "monja");
+        try {
+            Assertions.assertEquals("monja", editorLLeno.getLinea(2).getAtPos(1));
+        } catch (EmptyCollectionException e) {
+            e.printStackTrace();
+        }
+
+        editorLLeno.sustituirPalabra("jamon", "monja");
+        try {
+            Assertions.assertEquals("monja", editorLLeno.getLinea(2).getAtPos(1));
+        } catch (EmptyCollectionException e) {
+            e.printStackTrace();
+        }
+    }
 }
