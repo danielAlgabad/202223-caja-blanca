@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 public class GrafoTest {
 
     Grafo grafoVacio;
@@ -16,12 +18,19 @@ public class GrafoTest {
     @BeforeEach
     public void setup(){
         grafoVacio = new Grafo();
+        grafoVacio.addVertice(0);
         grafoConCosas = new Grafo(true, false);
+
         grafoConCosas.addVertice(0);
         grafoConCosas.addVertice(1);
         grafoConCosas.addVertice(2);
-        grafoConCosas.addArco(new Arco(2, 1, 0));
+        grafoConCosas.addVertice(3);
+        grafoConCosas.addVertice(4);
+
         grafoConCosas.addArco(new Arco(0, 1, 0));
+        grafoConCosas.addArco(new Arco(0, 2, 0));
+        grafoConCosas.addArco(new Arco(1, 3, 0));
+        grafoConCosas.addArco(new Arco(1, 4, 0));
     }
 
     @Test
@@ -32,10 +41,21 @@ public class GrafoTest {
 
     @Test
     public void todosVisitadosTest(){
-
-        grafoConCosas.componentsRelated();
-
-
-
+        System.out.println(grafoConCosas.componentsRelated());
     }
+
+    @Test
+    public void BFSTest(){
+        Assertions.assertThrows(NoSuchElementException.class, () -> {
+                    grafoConCosas.BFS(96);},
+                "Si el vertice no está en el grafo cómo esperas encontrarlo maquina");
+        Assertions.assertEquals("[0]", grafoVacio.BFS(0),
+                "para un solo nodo solo debe haber ese nodo en la anchura");
+        Assertions.assertEquals("[0 1 2 3 4]", grafoConCosas.BFS(0));
+    }
+
+    @Test
+
+
+
 }
