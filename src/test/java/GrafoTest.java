@@ -23,20 +23,24 @@ public class GrafoTest {
 
         grafoConCosas.addVertice(0);
         grafoConCosas.addVertice(1);
-        grafoConCosas.addVertice(2);
-        grafoConCosas.addVertice(3);
-        grafoConCosas.addVertice(4);
+        //grafoConCosas.addVertice(2);
+        //grafoConCosas.addVertice(3);
+        //grafoConCosas.addVertice(4);
 
         grafoConCosas.addArco(new Arco(0, 1, 0));
-        grafoConCosas.addArco(new Arco(0, 2, 0));
-        grafoConCosas.addArco(new Arco(1, 3, 0));
-        grafoConCosas.addArco(new Arco(1, 4, 0));
+        grafoConCosas.addArco(new Arco(1, 0, 0));
+        //grafoConCosas.addArco(new Arco(0, 2, 0));
+        //grafoConCosas.addArco(new Arco(1, 3, 0));
+        //grafoConCosas.addArco(new Arco(1, 4, 0));
     }
 
     @Test
     public void printListaAdyacenteTest(){
-        grafoConCosas.printListaAdyacentes(0);
-        grafoConCosas.printListaAdyacentes(1);
+
+        grafoVacio.printListaAdyacentes(0);
+
+        //grafoConCosas.printListaAdyacentes(0);
+        //grafoConCosas.printListaAdyacentes(1);
     }
 
     @Test
@@ -55,6 +59,17 @@ public class GrafoTest {
     }
 
     @Test
+    public void kruskalTest(){
+        //grafoVacio.kruskal();
+
+
+        //grafoVacio.addArco( new Arco(0, 0, 0));
+        //grafoVacio.kruskal();
+
+        grafoConCosas.kruskal();
+
+        //grafoConCosas.kruskal();
+    }
 
 
 
